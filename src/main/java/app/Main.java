@@ -25,8 +25,8 @@ public class Main {
                 case 1 -> anadirJuego();     // NUEVO
                 case 2 -> listarJuegos();
                 case 3 -> buscarJuego();     // NUEVO
-                case 4 -> System.out.println("(Modificar: lo haremos en la parte B2)");
-                case 5 -> System.out.println("(Borrar: lo haremos en la parte B2)");
+                case 4 -> modificarJuego();
+                case 5 -> borrarJuego();
                 case 0 -> System.out.println("¡Hasta pronto!");
                 default -> System.out.println("Opción no válida.");
             }
@@ -88,6 +88,61 @@ public class Main {
             System.out.println("No existe ningún juego con id " + id);
         } else {
             System.out.println(juego);
+        }
+    }
+    // Opción 4: modificar un juego
+    private static void modificarJuego() {
+        int id = leerEntero("Id del juego a modificar: ");
+        Videojuego juego = dao.buscarPorId(id);
+
+        if (juego == null) {
+            System.out.println("No existe ningún juego con id " + id);
+            return;
+        }
+
+        System.out.println("Juego actual: " + juego);
+        System.out.println("¿Qué quieres cambiar?");
+        System.out.println("  1. Título");
+        System.out.println("  2. Plataforma");
+        System.out.println("  3. Género");
+        System.out.println("  4. Año");
+        System.out.println("  5. Estado");
+        System.out.println("  6. Valoración");
+        System.out.println("  7. Horas jugadas");
+
+        int campo = leerEnteroEntre("Elige: ", 1, 7);
+
+        switch (campo) {
+            case 1 -> juego.setTitulo(leerTexto("Nuevo título: "));
+            case 2 -> juego.setPlataforma(elegirPlataforma());
+            case 3 -> juego.setGenero(leerTexto("Nuevo género: "));
+            case 4 -> juego.setAnio(leerEnteroEntre("Nuevo año: ", 1970, 2030));
+            case 5 -> juego.setEstado(elegirEstado());
+            case 6 -> juego.setValoracion(leerEnteroEntre("Nueva valoración (0-10): ", 0, 10));
+            case 7 -> juego.setHorasJugadas(leerEnteroEntre("Horas jugadas: ", 0, 100000));
+        }
+
+        dao.modificar(juego);
+        System.out.println("Juego actualizado: " + juego);
+    }
+
+    // Opción 5: borrar un juego
+    private static void borrarJuego() {
+        int id = leerEntero("Id del juego a borrar: ");
+        Videojuego juego = dao.buscarPorId(id);
+
+        if (juego == null) {
+            System.out.println("No existe ningún juego con id " + id);
+            return;
+        }
+
+        System.out.println("Vas a borrar: " + juego);
+
+        if (confirmar("¿Seguro? (s/n): ")) {
+            dao.borrar(id);
+            System.out.println("Juego borrado.");
+        } else {
+            System.out.println("Borrado cancelado.");
         }
     }
 
@@ -158,5 +213,20 @@ public class Main {
 
         int eleccion = leerEnteroEntre("Elige estado: ", 1, estados.length);
         return estados[eleccion - 1];
+    }
+    // Pregunta s/n y no para hasta recibir una respuesta válida
+    private static boolean confirmar(String mensaje) {
+        while (true) {
+            System.out.print(mensaje);
+            String respuesta = teclado.nextLine().trim().toLowerCase();
+
+            if (respuesta.equals("s")) {
+                return true;
+            }
+            if (respuesta.equals("n")) {
+                return false;
+            }
+            System.out.println("Responde s o n.");
+        }
     }
 }
