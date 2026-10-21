@@ -28,7 +28,21 @@ public class VideojuegoDAOFichero implements VideojuegoDAO {
     // ===== ZONA 3: MÉTODOS DEL CONTRATO (todavía vacíos) =====
     @Override
     public Videojuego insertar(Videojuego juego) {
-        return null;
+        List<Videojuego> juegos = leerTodos();
+
+        // Calcular el siguiente id: el más alto + 1
+        int nuevoId = 1;
+        for (Videojuego j : juegos) {
+            if (j.getId() >= nuevoId) {
+                nuevoId = j.getId() + 1;
+            }
+        }
+
+        juego.setId(nuevoId);
+        juegos.add(juego);
+        guardarTodos(juegos);
+
+        return juego;
     }
 
     @Override
@@ -38,6 +52,11 @@ public class VideojuegoDAOFichero implements VideojuegoDAO {
 
     @Override
     public Videojuego buscarPorId(int id) {
+        for (Videojuego juego : leerTodos()) {
+            if (juego.getId() == id) {
+                return juego;
+            }
+        }
         return null;
     }
 
