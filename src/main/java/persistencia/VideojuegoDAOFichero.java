@@ -62,14 +62,31 @@ public class VideojuegoDAOFichero implements VideojuegoDAO {
 
     @Override
     public boolean modificar(Videojuego juego) {
+        List<Videojuego> juegos = leerTodos();
+
+        for (int i = 0; i < juegos.size(); i++) {
+            if (juegos.get(i).getId() == juego.getId()) {
+                juegos.set(i, juego);
+                guardarTodos(juegos);
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public boolean borrar(int id) {
+        List<Videojuego> juegos = leerTodos();
+
+        for (int i = 0; i < juegos.size(); i++) {
+            if (juegos.get(i).getId() == id) {
+                juegos.remove(i);
+                guardarTodos(juegos);
+                return true;
+            }
+        }
         return false;
     }
-
     // ===== ZONA 4: TRADUCTORES (métodos de ayuda) =====
     private String videojuegoALinea(Videojuego juego) {
         return juego.getId() + SEPARADOR
