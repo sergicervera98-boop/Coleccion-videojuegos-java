@@ -5,6 +5,7 @@ import modelo.Plataforma;      // NUEVO
 import modelo.Videojuego;
 import persistencia.VideojuegoDAO;
 import persistencia.VideojuegoDAOFichero;
+import persistencia.VideojuegoDAOPostgres;
 
 import java.util.List;
 import java.util.Scanner;
@@ -12,8 +13,8 @@ import java.util.Scanner;
 public class Main {
 
     private static final Scanner teclado = new Scanner(System.in);
-    private static final VideojuegoDAO dao = new VideojuegoDAOFichero("videojuegos.csv");
-
+    private static final VideojuegoDAO dao = new VideojuegoDAOPostgres();
+    // private static final VideojuegoDAO dao = new VideojuegoDAOFichero("videojuegos.csv");
     public static void main(String[] args) {
         int opcion;
 
