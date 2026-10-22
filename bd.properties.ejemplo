@@ -1,0 +1,4 @@
+# Copia este archivo como bd.properties y pon tus datos
+url=jdbc:postgresql://localhost:5432/coleccion
+usuario=postgres
+contrasena=
