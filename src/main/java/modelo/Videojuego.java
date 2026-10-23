@@ -57,10 +57,19 @@ public class Videojuego {
     public void setHorasJugadas(int horasJugadas) { this.horasJugadas = horasJugadas; }
 
     // 5. toString: cómo se ve un juego al imprimirlo
+    // 5. toString: cómo se ve un juego al imprimirlo
     @Override
     public String toString() {
+        // La valoración 0 significa "sin valorar": mejor decirlo con palabras
+        String nota;
+        if (valoracion == 0) {
+            nota = "sin valorar";
+        } else {
+            nota = valoracion + "/10";
+        }
+
         return "#" + id + " " + titulo + " (" + anio + ") - " + plataforma
                 + " - " + genero + " - " + estado
-                + " - " + valoracion + "/10 - " + horasJugadas + " h";
+                + " - " + nota + " - " + horasJugadas + " h";
     }
 }
