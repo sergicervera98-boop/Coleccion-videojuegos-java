@@ -1,10 +1,10 @@
-# 🎮 Colección de videojuegos
+#  Colección de videojuegos
 
 Aplicación de consola en **Java** para gestionar una colección personal de videojuegos: qué juegos tienes, en qué plataforma, si los has terminado, cuántas horas llevas y qué nota les das. Los datos se guardan en una base de datos **PostgreSQL**.
 
 Es el primer proyecto de mi portfolio de 2º de DAM.
 
-## 📸 Capturas
+##  Capturas
 
 **El menú y la colección**
 
@@ -18,7 +18,7 @@ Es el primer proyecto de mi portfolio de 2º de DAM.
 
 ![Tabla videojuego en pgAdmin con los juegos guardados](capturas/pgadmin-tabla.png)
 
-## ✨ Qué puede hacer
+##  Qué puede hacer
 
 - **Añadir** juegos con título, plataforma, género, año, estado, valoración y horas jugadas.
 - **Listar** toda la colección.
@@ -27,7 +27,7 @@ Es el primer proyecto de mi portfolio de 2º de DAM.
 - **Borrar** juegos, pidiendo confirmación antes.
 - **Validar** lo que escribe el usuario: no deja poner una valoración de 15 ni un año imposible, y vuelve a preguntar en vez de cerrarse.
 
-## 🛠️ Tecnologías
+##  Tecnologías
 
 - Java (JDK 25)
 - PostgreSQL 18
@@ -36,7 +36,7 @@ Es el primer proyecto de mi portfolio de 2º de DAM.
 - Git y GitHub
 - IntelliJ IDEA y pgAdmin 4
 
-## 🧱 Cómo está organizado
+##  Cómo está organizado
 
 El código está dividido en tres capas, y cada una tiene una sola responsabilidad:
 
@@ -52,7 +52,7 @@ src/main/java/
 sql/crear_tablas.sql   → script para crear la tabla
 ```
 
-## 💡 Decisiones destacadas
+##  Decisiones destacadas
 
 **Cambiar de fichero a base de datos tocando una sola línea.**
 El menú no sabe dónde se guardan los juegos: solo usa la interfaz `VideojuegoDAO`. Primero el proyecto guardaba en un fichero CSV y después lo pasé a PostgreSQL cambiando una única línea en `Main`. Las dos versiones siguen en el código.
@@ -69,7 +69,7 @@ Los datos de conexión se leen de `bd.properties`, que está en el `.gitignore` 
 **Pruebas con casos límite.**
 Cada operación se probó con el caso que existe y con el que no (por ejemplo, buscar o borrar un juego que no está).
 
-## ▶️ Cómo ejecutarlo
+##  Cómo ejecutarlo
 
 **Necesitas:** JDK 25, PostgreSQL y un IDE compatible con Maven (por ejemplo, IntelliJ IDEA).
 
@@ -83,7 +83,7 @@ Cada operación se probó con el caso que existe y con el que no (por ejemplo, b
 
 > Para usar el fichero CSV en vez de PostgreSQL, en `Main` comenta la línea de `VideojuegoDAOPostgres` y descomenta la de `VideojuegoDAOFichero`.
 
-## 📚 Qué he aprendido
+##  Qué he aprendido
 
 - Programación orientada a objetos: clases, encapsulación, enums e interfaces.
 - El patrón DAO para separar la lógica del programa de la forma de guardar los datos.
@@ -94,13 +94,13 @@ Cada operación se probó con el caso que existe y con el que no (por ejemplo, b
 - Buenas prácticas de seguridad: consultas parametrizadas y datos sensibles fuera del repositorio.
 - Control de versiones con Git y GitHub.
 
-## ⚠️ Limitaciones conocidas
+##  Limitaciones conocidas
 
 - La lista de plataformas está en dos sitios: el enum `Plataforma` de Java y la restricción `CHECK` de la tabla. Para añadir una plataforma nueva hay que cambiar los dos.
 - En la versión con fichero CSV, el carácter `;` rompería el formato. Por eso el menú no permite escribirlo. Con PostgreSQL este problema no existe.
 - Si la base de datos no está disponible, el programa se detiene con un mensaje técnico en vez de un aviso amigable.
 
-## 🚀 Mejoras futuras
+##  Mejoras futuras
 
 - Interfaz gráfica.
 - Estadísticas de la colección: horas totales, valoración media, juegos por plataforma.
@@ -108,7 +108,7 @@ Cada operación se probó con el caso que existe y con el que no (por ejemplo, b
 - Tests automáticos con JUnit.
 - Mensajes de error más amigables en el menú.
 
-## 👤 Autor
+##  Autor
 
 **Sergi Cervera Cebrian** · Estudiante de 2º de Desarrollo de Aplicaciones Multiplataforma (DAM)
 GitHub: [sergicervera98-boop](https://github.com/sergicervera98-boop)
